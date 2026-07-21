@@ -1,0 +1,14 @@
+---
+description: Safe handling of Lovable Cloud (Postgres) when using enable_database and query_database
+alwaysApply: false
+---
+
+cloud-database:
+
+Lovable Cloud gives a project a Postgres database, auth, file storage, and edge functions. The MCP database tools run against the real database, so treat them like production access.
+
+- Check `get_database_status` before you touch data. If there is no database yet, `enable_database` provisions one. Provisioning takes roughly 30 to 60 seconds, so wait and re-check status rather than firing queries immediately.
+- `query_database` runs with full permissions. It can read, write, and change schema. Read before you write, and never run a destructive statement (DROP, DELETE, TRUNCATE, ALTER) unless someone has asked for exactly that and understands the result.
+- Scope every query. Select the columns you need with a LIMIT while exploring; do not pull whole tables to answer a small question.
+- For schema and data model changes that the app depends on, prefer describing the change to the Lovable agent with `send_message` so the generated code and the database stay in sync. Use `query_database` for inspection, one-off fixes, and reporting.
+- Show the SQL you intend to run before running anything that writes, and report row counts back so the effect is visible.

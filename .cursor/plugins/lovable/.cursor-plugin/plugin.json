@@ -1,0 +1,17 @@
+{
+  "name": "lovable",
+  "displayName": "Lovable",
+  "version": "0.1.0",
+  "description": "Drive Lovable from Cursor: create projects, send work to the Lovable agent, manage Lovable Cloud databases, and deploy, all through the Lovable MCP server.",
+  "author": {
+    "name": "Lovable",
+    "email": "partnerships@lovable.dev"
+  },
+  "publisher": "Lovable",
+  "homepage": "https://lovable.dev",
+  "repository": "https://github.com/lovablelabs/mcp",
+  "license": "MIT",
+  "category": "integrations",
+  "keywords": ["lovable", "mcp", "app-builder", "deploy", "fullstack"],
+  "logo": "assets/logo.svg"
+}

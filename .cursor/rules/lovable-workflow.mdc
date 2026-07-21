@@ -1,0 +1,15 @@
+---
+description: How to drive a Lovable project from Cursor through the Lovable MCP tools
+alwaysApply: false
+---
+
+lovable-workflow:
+
+The Lovable agent owns the code. It edits a TypeScript + Tailwind + shadcn/ui app in a cloud sandbox and rebuilds a live preview after every reply. You are not editing those files locally; you are sending instructions and reading back what changed.
+
+- Find the project first. Use `list_projects` to locate it, or `create_project` to start a new one. Hold onto the `editor_url` (where a person edits visually) and the `preview_url` (the running app). Share the `preview_url` when someone asks to see the result.
+- Make changes by describing them with `send_message`. Be specific about the screen, the component, and the behavior you want. One clear request per message beats a long list.
+- When you are unsure how a change should work, set `plan_mode=true` on `send_message` and settle the approach before any code is written.
+- After the agent replies, read `get_diff` to confirm what actually changed before telling anyone it is done. Use `read_file` and `list_files` when you need the current state of a specific file, and `list_edits` for the history.
+- Persist standing instructions instead of repeating them. `set_project_knowledge` for one project, `set_workspace_knowledge` for every project in the workspace.
+- Treat the preview as the source of truth. A reply that says a change was made is not the same as a change you have seen in the diff or the running app.
